@@ -1,13 +1,14 @@
 from typing import Union
-from pydantic import BaseModel, ValidationError
-import pprint
+from pydantic import RootModel
 import json
+import pprint
 
 from infobip_cpaasx.models.mms_advanced_message_segment_binary import MmsAdvancedMessageSegmentBinary
 from infobip_cpaasx.models.mms_advanced_message_segment_link import MmsAdvancedMessageSegmentLink
 from infobip_cpaasx.models.mms_advanced_message_segment_smil import MmsAdvancedMessageSegmentSmil
 from infobip_cpaasx.models.mms_advanced_message_segment_text import MmsAdvancedMessageSegmentText
 from infobip_cpaasx.models.mms_advanced_message_segment_upload_reference import MmsAdvancedMessageSegmentUploadReference
+
 
 SegmentUnion = Union[
     MmsAdvancedMessageSegmentText,
@@ -17,29 +18,24 @@ SegmentUnion = Union[
     MmsAdvancedMessageSegmentUploadReference,
 ]
 
-class MmsAdvancedMessageSegment(BaseModel):
-    __root__: SegmentUnion
-
-    class Config:
-        validate_assignment = True
-
+class MmsAdvancedMessageSegment(RootModel[SegmentUnion]):
     @classmethod
     def from_json(cls, json_str: str) -> "MmsAdvancedMessageSegment":
         try:
             data = json.loads(json_str)
-            return cls.parse_obj(data)
-        except (ValidationError, json.JSONDecodeError) as e:
+            return cls.model_validate(data)
+        except Exception as e:
             raise ValueError(f"Could not parse MmsAdvancedMessageSegment from JSON: {e}")
 
     @classmethod
     def from_dict(cls, obj: dict) -> "MmsAdvancedMessageSegment":
         try:
-            return cls.parse_obj(obj)
-        except ValidationError as e:
+            return cls.model_validate(obj)
+        except Exception as e:
             raise ValueError(f"Could not parse MmsAdvancedMessageSegment from dict: {e}")
 
     def to_dict(self) -> dict:
-        return self.__root__.to_dict()
+        return self.root.to_dict()
 
     def to_json(self) -> str:
         return json.dumps(self.to_dict())
@@ -49,4 +45,4 @@ class MmsAdvancedMessageSegment(BaseModel):
 
     @property
     def actual_instance(self):
-        return self.__root__
+        return self.root
