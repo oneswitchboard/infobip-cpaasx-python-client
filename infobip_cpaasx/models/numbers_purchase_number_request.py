@@ -40,7 +40,7 @@ class NumbersPurchaseNumberRequest(BaseModel):
     __properties = ["numberKey", "number", "applicationId", "entityId"]
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
         validate_assignment = True
 
     def to_str(self) -> str:

@@ -32,7 +32,7 @@ class NumberPrice(BaseModel):
     __properties = ["pricePerMonth", "setupPrice", "initialMonthPrice", "currency"]
 
     class Config:
-        allow_population_by_field_name = True
+        populate_by_name = True
         validate_assignment = True
 
     def to_str(self) -> str:
