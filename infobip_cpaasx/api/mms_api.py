@@ -513,7 +513,7 @@ class MmsApi(object):
         # process the body parameter
         _body_params = None
         if _params["mms_advanced_request"]:
-            _body_params = _params["mms_advanced_request"]
+            _body_params = _params["mms_advanced_request"].to_dict()
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
