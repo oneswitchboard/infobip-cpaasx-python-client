@@ -19,8 +19,10 @@ class MmsAdvancedMessage(BaseModel):
     destinations: List[MmsDestination] = Field(
         ..., description="An array of destination objects for where messages are being sent."
     )
-    var_from: Optional[StrictStr] = Field(
-        None, alias="from"
+    sender: Optional[StrictStr] = Field(
+        None,
+        alias="sender",
+        description="The sender ID (alphanumeric or numeric, e.g., 'CompanyName' or short code)."
     )
     intermediate_report: Optional[StrictBool] = Field(
         None, alias="intermediateReport"
@@ -52,10 +54,8 @@ class MmsAdvancedMessage(BaseModel):
         return json.dumps(self.to_dict())
 
     def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True, exclude_none=True)
 
-        # Handle nested models with custom to_dict() if present
         if self.delivery_time_window:
             _dict["deliveryTimeWindow"] = self.delivery_time_window.to_dict()
 
@@ -76,8 +76,10 @@ class MmsAdvancedMessage(BaseModel):
             callback_data=obj.get("callbackData"),
             delivery_time_window=MmsDeliveryTimeWindow.from_dict(obj.get("deliveryTimeWindow"))
                 if obj.get("deliveryTimeWindow") is not None else None,
-            destinations=[MmsDestination.from_dict(d) for d in obj.get("destinations", [])],
-            var_from=obj.get("from"),
+            destinations=[
+                MmsDestination.from_dict(d) for d in obj.get("destinations", [])
+            ],
+            sender=obj.get("sender"),
             intermediate_report=obj.get("intermediateReport"),
             notify_url=obj.get("notifyUrl"),
             content=MmsMessageContent.from_dict(obj.get("content"))
