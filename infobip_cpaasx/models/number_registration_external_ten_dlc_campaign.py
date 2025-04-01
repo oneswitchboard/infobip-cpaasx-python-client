@@ -45,7 +45,7 @@ class NumberRegistrationExternalTenDlcCampaign(NumberRegistrationCampaign):
         None,
         alias="numberPreviews",
         description="The number(s) to use with the campaign. This property is read-only and ignored in POST/PUT calls.",
-        unique_items=True,
+        set=True,
     )
     __properties = [
         "id",

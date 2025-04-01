@@ -77,7 +77,7 @@ class NumberRegistrationTenDlcCampaign(NumberRegistrationCampaign):
         ...,
         alias="messageTypes",
         description="The message type(s) this campaign will use to send messages.",
-        unique_items=True,
+        set=True,
     )
     terms_and_conditions_url: constr(
         strict=True, max_length=255, min_length=11
@@ -118,7 +118,7 @@ class NumberRegistrationTenDlcCampaign(NumberRegistrationCampaign):
         None,
         alias="numberPreviews",
         description="The number(s) to use with the campaign. This property is read-only and ignored in POST/PUT calls.",
-        unique_items=True,
+        set=True,
     )
     __properties = [
         "id",
