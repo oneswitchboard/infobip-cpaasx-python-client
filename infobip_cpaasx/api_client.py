@@ -428,6 +428,32 @@ class ApiClient(object):
             If parameter async_req is False or missing,
             then the method will return the response directly.
         """
+        kwargs_dict = {
+            "resource_path": resource_path,
+            "method": method,
+            "path_params": path_params,
+            "query_params": query_params,
+            "header_params": header_params,
+            "body": body,
+            "post_params": post_params,
+            "files": files,
+            "response_types_map": response_types_map,
+            "auth_settings": auth_settings,
+            "async_req": async_req,
+            "_return_http_data_only": _return_http_data_only,
+            "collection_formats": collection_formats,
+            "_preload_content": _preload_content,
+            "_request_timeout": _request_timeout,
+            "_host": _host,
+            "_request_auth": _request_auth,
+        }
+
+        # Filter out None values
+        filtered_kwargs = {k: v for k, v in kwargs_dict.items() if v is not None}
+
+        # Pretty-print JSON
+        print("call_api kwargs:")
+        print(json.dumps(filtered_kwargs, indent=2, default=str))  # default=str handles non-serializable objects
         if not async_req:
             return self.__call_api(
                 resource_path,
