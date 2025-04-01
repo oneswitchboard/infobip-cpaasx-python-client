@@ -61,7 +61,7 @@ class MmsAdvancedMessageSegment(BaseModel):
     anyof_schema_5_validator: Optional[MmsAdvancedMessageSegmentUploadReference] = None
     actual_instance: Any
     any_of_schemas: List[str] = Field(
-        MMSADVANCEDMESSAGESEGMENT_ANY_OF_SCHEMAS, const=True
+        MMSADVANCEDMESSAGESEGMENT_ANY_OF_SCHEMAS, Literal=True
     )
 
     class Config:

@@ -43,7 +43,7 @@ class MmsWebhookInboundMessageSegment(BaseModel):
     anyof_schema_2_validator: Optional[MmsWebhookInboundMessageSegmentLink] = None
     actual_instance: Any
     any_of_schemas: List[str] = Field(
-        MMSWEBHOOKINBOUNDMESSAGESEGMENT_ANY_OF_SCHEMAS, const=True
+        MMSWEBHOOKINBOUNDMESSAGESEGMENT_ANY_OF_SCHEMAS, Literal=True
     )
 
     class Config:
