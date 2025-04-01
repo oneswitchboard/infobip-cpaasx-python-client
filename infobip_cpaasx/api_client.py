@@ -224,7 +224,6 @@ class ApiClient(object):
             url += "?" + url_query
 
         try:
-            print(body)
             # perform request and return response
             response_data = self.request(
                 method,
