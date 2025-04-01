@@ -58,7 +58,7 @@ class NumberRegistrationTenDlcCampaign(NumberRegistrationCampaign):
         alias="confirmationMessage",
         description="The message sent to the user after they have subscribed.",
     )
-    example_messages: conlist(StrictStr, max_items=5, min_items=1) = Field(
+    example_messages: conlist(StrictStr, max_length=5, min_length=1) = Field(
         ...,
         alias="exampleMessages",
         description="The example message(s) a user may receive from this campaign. Each example message must be at least 20 characters long.",
@@ -109,7 +109,7 @@ class NumberRegistrationTenDlcCampaign(NumberRegistrationCampaign):
     use_case: StrictStr = Field(
         ..., alias="useCase", description="The use case for this campaign."
     )
-    number_keys: conlist(StrictStr, max_items=50, min_items=1) = Field(
+    number_keys: conlist(StrictStr, max_length=50, min_length=1) = Field(
         ...,
         alias="numberKeys",
         description="The numberKey(s) of the numbers to use with the campaign.",

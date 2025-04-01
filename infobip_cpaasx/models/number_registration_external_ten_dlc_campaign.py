@@ -36,7 +36,7 @@ class NumberRegistrationExternalTenDlcCampaign(NumberRegistrationCampaign):
         alias="externalCampaignId",
         description="The ID of the campaign as defined by the external registrar (e.g. The Campaign Registry).",
     )
-    number_keys: conlist(StrictStr, max_items=50, min_items=1) = Field(
+    number_keys: conlist(StrictStr, max_length=50, min_length=1) = Field(
         ...,
         alias="numberKeys",
         description="The numberKey(s) of the numbers to use with the campaign.",

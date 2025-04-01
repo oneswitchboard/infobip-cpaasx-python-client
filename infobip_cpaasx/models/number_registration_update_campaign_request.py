@@ -24,7 +24,7 @@ class NumberRegistrationUpdateCampaignRequest(BaseModel):
     Do not edit the class manually.
     """
 
-    number_keys: conlist(StrictStr, max_items=50, min_items=1) = Field(
+    number_keys: conlist(StrictStr, max_length=50, min_length=1) = Field(
         ...,
         alias="numberKeys",
         description="The numberKey(s) of the numbers to use with the campaign.",

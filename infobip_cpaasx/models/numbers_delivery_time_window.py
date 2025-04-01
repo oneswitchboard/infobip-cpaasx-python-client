@@ -34,7 +34,7 @@ class NumbersDeliveryTimeWindow(BaseModel):
         ...,
         description="Exact time of day in which the sending will end. Consists of an hour and minute properties, both mandatory. Time is expressed in the UTC time zone. Formatted as HH:mm.",
     )
-    days: conlist(StrictStr, max_items=7, min_items=1) = Field(
+    days: conlist(StrictStr, max_length=7, min_length=1) = Field(
         ...,
         description="Days which are included in the delivery time window."
     )
