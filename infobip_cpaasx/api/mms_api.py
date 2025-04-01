@@ -536,7 +536,7 @@ class MmsApi(object):
         }
 
         return self.api_client.call_api(
-            "/mms/1/advanced",
+            "/mms/2/advanced",
             "POST",
             _path_params,
             _query_params,
