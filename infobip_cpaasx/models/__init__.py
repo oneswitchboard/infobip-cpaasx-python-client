@@ -22,6 +22,7 @@ from infobip_cpaasx.models.mms_advanced_message_segment import MmsAdvancedMessag
 from infobip_cpaasx.models.mms_advanced_message_segment_binary import (
     MmsAdvancedMessageSegmentBinary,
 )
+from infobip_cpaasx.models.mms_message_content import MmsMessageContent
 from infobip_cpaasx.models.mms_advanced_message_segment_link import (
     MmsAdvancedMessageSegmentLink,
 )

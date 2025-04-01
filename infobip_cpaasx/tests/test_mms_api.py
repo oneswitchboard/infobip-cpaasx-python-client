@@ -8,7 +8,7 @@ from infobip_cpaasx import ApiClient, Configuration, MmsApi, MmsAdvancedRequest,
     MmsStatus, MmsDeliveryTimeWindow, MmsDeliveryTime, MmsDeliveryDay, MmsAdvancedMessageSegmentBinary, \
     MmsAdvancedMessageSegmentSmil, MmsAdvancedMessageSegmentUploadReference, MmsReportResponse, MmsReport, MmsPrice, \
     MmsError, MmsInboundReportResponse, MmsInboundReport, \
-    MmsWebhookInboundReportResponse, MmsWebhookInboundReport, MmsWebhookInboundMessageSegment, \
+    MmsWebhookInboundReportResponse, MmsWebhookInboundReport, MmsWebhookInboundMessageSegment, MmsMessageContent, \
     MmsWebhookInboundMessageSegmentLink, MmsWebhookInboundMessageSegmentText, MmsUploadBinaryResult, MmsDestination
 
 mms_advanced_endpoint = "/mms/1/advanced"
@@ -102,6 +102,7 @@ def test_send_link_mms_with_application_and_entity(httpserver: HTTPServer, mms_a
                     ),
                 ],
                 var_from=given_from,
+                content=MmsMessageContent(
                 message_segments=[
                     MmsAdvancedMessageSegment(actual_instance=MmsAdvancedMessageSegmentText(
                         content_id=text_segment_content_id,
@@ -113,6 +114,7 @@ def test_send_link_mms_with_application_and_entity(httpserver: HTTPServer, mms_a
                         content_url=link_segment_content_url
                     ))
                 ],
+                ),
                 application_id=application_id,
                 entity_id=entity_id
             )
